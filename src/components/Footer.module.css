@@ -1,0 +1,126 @@
+.footerContainer {
+   width: 100%;
+   height: 400px;
+   background-color: rgb(15,30,49);
+   margin-top: 5em;
+   padding: 3em 4em;
+   display:flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   gap: 3.5em;
+   direction: rtl;
+   margin-bottom: 0;
+}
+.descriptionPart {
+   width: 45%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   gap: 1em;
+}
+.descriptionImgContainer {
+   width: 100%;
+   height: 30%;
+   display: flex; justify-content: right; align-items: start;
+}
+.descriptionImgContainer img {
+   max-width: 30%;
+   max-height: 100%;
+}
+.descriptionPart p {
+   width: 100%;
+   height: 70%;
+   font-family: 'KoohNoor';
+   font-weight: 100;
+   font-size: .95rem;
+   color: white;
+   text-align: justify;
+   line-height: 1.8em;
+}
+
+
+.categoryPart {
+   width: 35%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: start;
+}
+.categoryPart h2 {
+   font-family: 'Lalezar';
+   font-size: 1.3rem;
+   width: 100%;
+   height: fit-content;
+   text-align: right;
+   color: rgb(248, 248, 248);
+   font-weight: 100;
+}
+.categoryPart p {
+   width: 100%;
+   padding: .5em 0;
+   color: rgb(248, 248, 248);
+   font-family: 'Lalezar';
+}
+.categories {
+   width: 100%;
+   height: 130px;
+   display: flex;
+   flex-direction: column;
+   gap: .5em;
+   list-style: square;
+   padding: 0 1.2em;
+}
+.categories li {
+   font-family: 'Lalezar';
+   font-size: 1.1rem;
+   color: rgb(223, 203, 255);   
+}
+.categories a{
+   color: rgb(159, 159, 255);
+}
+.icons {
+   display: flex;
+   flex-direction: row;
+   justify-content: right;
+   width: 100%;
+   height: 65px;
+}
+.icons div {
+   display: flex; justify-content: right; align-items: center;
+   width: 20%;
+   height: 100%;
+}
+.icons div img {
+   max-width: 100%;
+   max-height: 100%;
+}
+
+
+.logoPart {
+   width: 18%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 1em;
+}
+.logoPart h2 {
+   font-family: 'Lalezar';
+   font-size: 1.3rem;
+   width: 100%;
+   height: fit-content;
+   text-align: right;
+   color: rgb(248, 248, 248);
+   font-weight: 100;
+}
+.logoPart div {
+   width: 100%;
+   height: 110px;
+   display: flex; justify-content: right;
+}
+.logoPart div img {
+   max-width: 100%;
+   max-height: 100%;
+}

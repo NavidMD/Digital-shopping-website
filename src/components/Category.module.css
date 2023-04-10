@@ -1,0 +1,12 @@
+.container{
+   background-color: rgb(197, 197, 197);
+   /* border-top: 2px solid rgb(207, 207, 207);
+   border-bottom: 2px solid rgb(207, 207, 207); */
+   padding: 2em 4em;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   gap: 1.5em;
+   bottom: 20px;
+}

@@ -1,0 +1,37 @@
+.container{
+   width: 210px;
+   height: 220px;
+   background-color:rgb(255, 255, 255);
+   border: 1px solid rgb(240, 240, 240);
+   padding:1em .2em 3em .2em;
+   gap: .6em;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   border-radius: 1.4em;
+   position: relative;
+   transition: all .6s;
+   box-shadow: 0px 1px 14px -3px black;
+   font-family: 'Lalezar';
+}
+.container:hover {
+   background-color: rgb(255, 255, 255);
+}
+.container img{
+   max-height: 100%;
+   max-width: 100%;
+   transition: .2s;
+   filter: brightness(90%);
+}
+.container:hover img{
+   scale: 105%;
+}
+.container h2{
+   position: absolute;
+   color:rgb(44, 44, 44);
+   bottom: 11px;
+   font-size: 1.3rem;
+   font-weight: 100;
+   transition: .7s;
+}

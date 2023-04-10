@@ -1,0 +1,82 @@
+.bannerContainer{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   position: relative;
+}
+.bannerContainer img{
+   width: 100%;
+   filter: brightness(100%);
+}
+.bannerTitle {
+   position: absolute;
+   right: 190px;
+   top: 195px;
+   width: 500px;
+   height: auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: end;
+   gap: .2em;
+}
+.bannerTitle h1{
+   right: 160px;
+   top: 220px;
+   font-family: 'Cinema';
+   font-weight: 300;
+   font-size: 4.1rem;
+   color: rgb(15, 30, 49);
+   direction: rtl;
+}
+.bannerTitle p {
+   width: 90%;
+   height: auto;
+   line-height: 2em;
+   direction: rtl;
+   letter-spacing: .2px;
+   font-size: 1.04rem;
+   font-weight: 400;
+   right: 160px;
+   top: 320px;
+   font-family: 'KoohNoor';
+   color: rgb(0, 0, 0);
+}
+.bannerTitle button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: row;
+   gap: .3em;
+   margin-top: 1em;
+   background-color: rgb(15, 30, 49);
+   box-shadow: 0px 1px 11px -4px black;
+   color: white;
+   font-family: 'Cinema';
+   font-size: 1.3rem;
+   font-weight: 100;
+   border: none;
+   border-radius: .6em;
+   width: 170px;
+   height: 45px;
+   transition: .2s;
+   cursor: pointer;
+}
+.bannerTitle button:hover {
+   background-color: rgb(27, 53, 87);
+}
+.bannerContainer button img {
+   width: 18px;
+}
+
+.searchContainer:hover {
+   background-color: rgb(220, 205, 255);
+}
+
+.imgContainer {
+   width: 13%;
+   display: flex;
+   justify-content: center; align-items: center;
+}
