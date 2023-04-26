@@ -7,8 +7,12 @@ class Card extends Component {
       const {src,alt,category} = this.props;
       return (
          <div className={styles.container}>
-            <img src={src}  alt={alt}/>
-            <h2>{category}</h2>
+            <div className={styles.imgContainer}>
+               <img src={src}  alt={alt}/>
+            </div>
+            <div className={styles.headerContainer}>
+               <h2>{category}</h2>
+            </div>
          </div>
       );
    }

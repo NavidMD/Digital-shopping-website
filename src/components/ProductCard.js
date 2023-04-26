@@ -11,15 +11,16 @@ import styles from './ProductCard.module.css';
 import PlusIcon from '../Icons/plus.png';
 import MinusIcon from '../Icons/minus.png';
 import DeleteIcon from '../Icons/recycle-bin.png';
+import StarIcon from '../Icons/star (2).png';
 //Context
 import { CartContext } from '../context/CartContextProvider';
 
 const Card = styled.div`
-   width: 220px;
-   height: 330px;
+   width: 230px;
+   height: 373px;
    background-color: white;
-   border-radius: 1em;
-   box-shadow: 0px 3px 15px -5px black;
+   border-radius: 15px;
+   box-shadow: 0px 2px 12px -7px black;
    position: relative;
    overflow: hidden;
    a {
@@ -48,6 +49,19 @@ const ProductCard = (props) => {
                <p>دسته بندی :</p>
                <p>{props.category}</p>
             </div>
+            <div className={styles.ratingStars}>
+               <p>امتیاز :</p>
+               <div className={styles.starsContainer}>
+                  <div>
+                     <span style={{width: `${(5 - props.productData.rating.rate) * 13}px`}}></span>
+                     <img src={StarIcon}/>
+                     <img src={StarIcon}/>
+                     <img src={StarIcon}/>
+                     <img src={StarIcon}/>
+                     <img src={StarIcon}/>
+                  </div>
+               </div>
+            </div>
             <div className={styles.price}>
                <p>قیمت :</p>
                <p className={styles.priceNumber}>{count ? count * props.price : props.price}$</p>
@@ -71,8 +85,3 @@ const ProductCard = (props) => {
 }
 
 export default ProductCard;
-
-
-{/* <img src={Plus} onClick={plusHandler}/>
-   <button>خرید</button>
-<img src={Minus} className={count ? '' : styles.deactived} onClick={minusHandler}/> */}

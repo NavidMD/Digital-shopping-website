@@ -11,7 +11,6 @@ const LandingPage = () => {
       <div>
          <Banner/>
          <Main/>
-         <BurgerButton/>
          <MainProducts/>
       </div>
    );

@@ -5,11 +5,12 @@
    justify-content: center;
    right: 75px; top: 21px;
    width: 110px; height: 40px;
+   min-width: 40px;
    background-color: rgb(15, 30, 49);
    border-radius: 1.4em;
    padding-top: .3em;
    padding: 0 .3em .5em .3em;
-   box-shadow: 0px 4px 13px -5px black;
+   box-shadow: 0px 4px 11px -6px black;
    transition:all .3s;
    overflow: hidden;
 } 
@@ -22,7 +23,7 @@
    overflow: hidden;
    position: absolute;
    right: 45px; top: 10px;
-   border: none;outline: none;
+   border: none; outline: none;
    text-align: right;
    font-family: 'Vazir';
    font-size: .9rem;
@@ -83,7 +84,6 @@ a {
    justify-content: center; align-items: center;
    padding-left: .3em;
 }
-
 .itemTitle h3 {
    font-size: .75rem;
    font-family: 'Vazir';
@@ -91,4 +91,12 @@ a {
 }
 .itemTitle h3:hover {
    color: rgb(37, 37, 111);
+}
+
+/* Responsive */
+
+@media (max-width:415px) {
+   .searchContainer {
+      right: 65px;
+   }
 }

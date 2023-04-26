@@ -5,6 +5,7 @@ import CartContextProvider from "./context/CartContextProvider";
 //!Components
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import BurgerButton from "./components/BurgerButton";
 //!Routes
 import MainRoutes from "./components/MainRoutes";
 //!Styles
@@ -31,6 +32,7 @@ const App = () => {
             <ProductsContext.Provider value={products}>
                <Header/>
                <MainRoutes/>
+               <BurgerButton/>
                <Footer/>
             </ProductsContext.Provider>
          </CartContextProvider>

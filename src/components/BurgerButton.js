@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 //Components
 import Menu from './Menu';
 //Styles
@@ -8,16 +8,16 @@ const Ul = styled.ul`
    direction: rtl;
    width: 40px;
    height: 40px;
-   background-color: rgb(15, 30, 49);
-   box-shadow: 0px 4px 13px -5px black;
+   background-color: ${props => props.open ? 'rgb(23, 42, 64)' : 'rgb(15, 30, 49)'};
+   box-shadow: 0px 4px 10px -6px black;
    border-radius: 50%;
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
-   gap:3px;
+   gap: 3px;
    position: fixed;
-   right: ${props => props.open ? '200px':'25px'};
+   right: ${props => props.open ? '180px':'25px'};
    top: 21px;
    z-index: 10;
    transition: .3s;
@@ -43,32 +43,33 @@ const Ul = styled.ul`
          transform: ${props => props.open ? 'rotate(45deg)':'rotate(0)'};
       }
    }
+
+   @media (max-width: 768px) {
+      right: ${props => props.open ? '150px':'18px'};
+   }
+   @media (max-width: 415px) {
+      right: ${props => props.open ? '120px' : '18px'};
+   }
+   
 `
 
-class BurgerButton extends Component {
-   constructor(){
-      super();
-      this.state = {
-         open : false,
-      }
+const BurgerButton = () => {
+   
+   const [open , setOpen] = useState(false)
+
+   const clickHandler = ()=> {
+      setOpen(!open)
    }
-   clickHandler = ()=> {
-      this.setState({
-         open : !this.state.open,
-      })
-   }
-   render() {
-      return (
-         <>
-            <Ul open={this.state.open} onClick={this.clickHandler}>
-               <div></div>
-               <div></div>
-               <div></div>
-            </Ul>
-            <Menu open={this.state.open}/>
-         </>
-      );
-   }
+   return (
+      <>
+         <Ul open={open} onClick={clickHandler}>
+            <div></div>
+            <div></div>
+            <div></div>
+         </Ul>
+         <Menu open={open}/>
+      </>
+   );
 }
 
 export default BurgerButton;

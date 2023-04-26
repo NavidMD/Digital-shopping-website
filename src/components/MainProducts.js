@@ -1,44 +1,61 @@
-import React, { Component } from 'react';
+import React, { useContext, useRef } from 'react';
 //Components
 import ProductCard from './ProductCard';
+//Contexts
+import { ProductsContext } from '../App';
 //Styles
 import styles from './MainProducts.module.css';
-//Icons
-import laptop from '../images/laptop2.png';
-import monitor from '../images/Monitor.png';
-import headphones from '../images/headphones.png';
-import graphic from '../images/Graphic-Card.png';
+//Icons 
+import leftArrow from '../Icons/arrow-left(1).png';
+import rightArrow from '../Icons/arrow-right (1).png';
+import { Link } from 'react-router-dom';
 
+const MainProducts = () => {
+   
+   const allProducts = useContext(ProductsContext);
+   const carrousel = useRef(null);
 
-class MainProducts extends Component {
-   constructor(){
-      super();
-      this.state = {
-         products: [
-            {id: 1, image: laptop, title: 'MACBOOK M1 2021', price: 1700, category: 'laptops'},
-            {id: 2,image: monitor, title: 'ASUS 27inch LCD', price: 350, category: 'monitors'},
-            {id: 3,image: graphic, title: 'Geforce RTX2060 Ti', price: 890, category: 'graphic cards'},
-            {id: 4,image: headphones, title: 'Beats HQBass 2022', price: 709, category: 'headphones'},
-            {id: 5,image: laptop, title: 'MACBOOK M2 2022', price: 1900, category: 'laptops'}
-         ]
+   const scrollHandler = (direction) => {
+      if(direction === 'right') {
+         carrousel.current.scrollBy({
+            top: 0,
+            left: 120,
+            behavior : "smooth"
+         })
+      } 
+      else {
+         carrousel.current.scrollBy({
+            top: 0,
+            left: -120,
+            behavior : "smooth"
+         })
       }
    }
-   
-   render() {
-      return (
-         <>
-            <div className={styles.mainProducts}>
-               <p className={styles.headerName}>جدید ترین محصولات </p>
-               <div className={styles.container}>
+
+   return (
+      <>
+         <div className={styles.mainProducts}>
+            <div className={styles.headerTitles}>
+               <p> جدید ترین محصولات و پیشنهاد ها</p>
+               <Link to="/products"><p>مشاهده همه</p></Link>
+            </div>
+            <div className={styles.carrousel}>
+               <div className={styles.arrowsContainerRight} onClick={() => scrollHandler('right')}>
+                  <img src={rightArrow}/>
+               </div>
+               <div ref={carrousel} className={styles.container}>
                   {
-                     this.state.products.map(product => 
-                     <ProductCard key={product.id} src={product.image} title={product.title} alt={product.category} price={product.price} category={product.category}/>)
+                     allProducts.map(product => <ProductCard key={product.id} src={product.image} alt={product.title} title={product.title} price={product.price} category={product.category} productNumber={product.id.toString()} productData={product} id={product.id}/>
+                     )
                   }
                </div>
+               <div className={styles.arrowsContainerLeft} onClick={() => scrollHandler('left')}>
+                  <img src={leftArrow}/>
+               </div>
             </div>
-         </>
-      );
-   }
+         </div>
+      </>
+   );
 }
 
 export default MainProducts;

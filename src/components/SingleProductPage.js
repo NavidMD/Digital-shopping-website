@@ -1,96 +1,119 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+//Functions
+import quantityChecker from '../functions/quantityChecker';
+import cartChecker from '../functions/cartChecker';
+//Contexts
+import { CartContext } from '../context/CartContextProvider';
 //Styles
 import styles from './SingleProductPage.module.css';
 //Icons
-import Plus from '../Icons/plus (1).svg';
-import Minus from '../Icons/minus.svg';
-import Cart from '../Icons/cart.png';
-import Circle from '../Icons/circle.png';
+import DeleteIcon from '../Icons/recycle-bin.png';
+import PlusIcon from '../Icons/plus.png';
+import MinusIcon from '../Icons/minus.png';
+import Notice from '../Icons/information.png';
+import FastTime from '../Icons/flash-delivery.png';
+import Return from '../Icons/debit-credit-card-back.png';
+import Support from '../Icons/support (1).png';
+import Payment from '../Icons/payment.png';
+import OriginalTag from '../Icons/award.png';
+import StarIcon from '../Icons/star (2).png';
 
-class SingleProductPage extends Component {
-   constructor(props){
-      super(props);
-      this.state = {
-         myProduct:[],
-         rating:[],
-         count: 0
-      }
-   }
 
-   componentDidMount(){
-      axios.get(`fakestoreapi.com/products/${this.props.match.params.key}`)
-      .then(response => this.setState({
-         myProduct : response,
-         rating: response.rating
-      }))
-   }
+const SingleProductPage = () => {
 
-   plusHandler = () => {
-      this.setState( prevState => ({
-         count : prevState.count + 1,
-      }))
-   }
+   const {state , dispatch} = useContext(CartContext)
+   const [myProduct , setMyProduct] = useState([])
+   const [rating , setRating] = useState([])
+   const params = useParams()
 
-   minusHandler = () => {
-      if(this.state.count){
-         this.setState(prevState => ({
-            count : prevState.count - 1,
-         }))
-      }
-   }
+   useEffect(() => {
+      axios.get(`fakestoreapi.com/products/${params.key}`)
+      .then(response => {
+         setMyProduct(response)
+         setRating(response.rating)
+      })
+   }, [])
 
-   render() {
-      const { myProduct , rating } = this.state;
-      return (
-         <div className={styles.page}>
-            <div className={styles.productContainer}>
-               <div className={styles.infoContainer}>
-                  <div className={styles.imagePart}>
-                     <div className={styles.divider}></div>
-                     <img src={myProduct.image} alt={myProduct.title}/>
-                  </div>
-                  <div className={styles.infoPart}>
-                     <h2>{myProduct.title}</h2>
-                     <h3>
-                        <img src={Circle} className={styles.circle}/>دسته بندی : <span>{myProduct.category}</span>
-                     </h3>
-                     <h3>
-                        <img src={Circle} className={styles.circle}/>امتیاز : <span className={styles.rate}>{rating.rate} <span className={styles.votesCount}> ({rating.count} رای)</span></span>
-                     </h3>
-                     <h3>
-                        <img src={Circle} className={styles.circle}/>قیمت : <span className={styles.price}>{myProduct.price}<span className={styles.dollarSign}>$</span></span>
-                     </h3>
-                     <div className={styles.buttonContainer}>
-                        <img src={Plus} onClick={this.plusHandler}/>
-                        <img src={Minus} className={!this.state.count ? styles.deactived : ''}  onClick={this.minusHandler}/>
-                        <button className={styles.addToCart}> افزودن به سبد  {this.state.count? this.state.count : ''}</button>
-                        <button className={styles.goToCart}><img src={Cart}/></button>
+
+   return (
+      <div className={styles.page}>
+         <div className={styles.productContainer}>
+            <div className={styles.infoContainer}>
+               <div className={styles.imagePart}>
+                  <div className={styles.divider}></div>
+                  <img src={myProduct.image} alt={myProduct.title}/>
+               </div>
+               <div className={styles.infoPart}>
+                  <h2>{myProduct.title}</h2>
+                  <ul>
+                     <li>
+                        دسته بندی : <span>{myProduct.category}</span>
+                     </li>
+                     <li>
+                        امتیاز : <span className={styles.rate}>{rating.rate} <span className={styles.votesCount}> ({rating.count} رای)</span></span>
+                     </li>
+                     <li>
+                        قیمت : <span className={styles.price}>{myProduct.price}<span className={styles.dollarSign}>$</span></span>
+                     </li>
+                  </ul>
+                  <div className={styles.buttonContainer}>
+                     <div className={styles.count}>
+                        
+                        {
+                           quantityChecker(state ,myProduct.id) > 1 && <img src={MinusIcon} onClick={()=> dispatch({type: 'DECREASE', payload: myProduct})} /> 
+                        }
+                        {
+                           quantityChecker(state ,myProduct.id) === 1 && <img src={DeleteIcon}  onClick={()=> dispatch({type: 'REMOVE-ITEM' , payload: myProduct})} />
+                        }
+                        {
+                           quantityChecker(state , myProduct.id) && <p>{quantityChecker(state , myProduct.id)}</p>
+                        }
+                        {
+                           cartChecker(state , myProduct.id) ? 
+                           <img src={PlusIcon} onClick={()=> dispatch({type: 'INCREASE' , payload: myProduct})} /> :
+                           <button onClick={()=> dispatch({type: 'ADD-ITEM' , payload: myProduct})}>افزودن به سبد</button>
+                        }
                      </div>
                   </div>
                </div>
-               <div className={styles.descriptionContainer}>
+            </div>
+            <div className={styles.shopServicesContainer}>
+               <div>
+                  <img src={FastTime}/>
+                  <p>امکان تحویل اکسپرس</p>
+               </div>
+               <div>
+                  <img src={Return}/>
+                  <p>هفت روز ضمانت بازگشت کالا</p>
+               </div>
+               <div>
+                  <img src={Payment}/>
+                  <p>امکان پرداخت در محل</p>
+               </div>
+               <div>
+                  <img src={Support}/>
+                  <p>۲۴ ساعته، ۷ روز هفته</p>
+               </div>
+               <div>
+                  <img src={OriginalTag}/>
+                  <p>ضمانت اصل بودن کالا</p>  
+               </div>
+            </div>
+            <div className={styles.descriptionContainer}>
+               <div className={styles.descriptionPart}>
                   <h2> توضیحات محصول :</h2>
                   <p>{myProduct.description}</p>
                </div>
-               {/* <div className={styles.shopSevicesContainer}>
-                  <div>
-                     <img/>
-                  </div>
-                  <div>
-                     <img/>
-                  </div>
-                  <div>
-                     <img/>
-                  </div>
-                  <div>
-                     <img/>
-                  </div>
-               </div> */}
+               <div className={styles.noticePart}>
+                  <img src={Notice}/>
+                  <p>امکان برگشت کالا در گروه موبایل با دلیل "انصراف از خرید" تنها در صورتی مورد قبول است که پلمب کالا باز نشده باشد. تمام گوشی‌های دیجی‌کالا ضمانت رجیستری دارند. در صورت وجود مشکل رجیستری، می‌توانید بعد از مهلت قانونی ۳۰ روزه، گوشی خریداری‌ شده را مرجوع کنید.</p>
+               </div>
             </div>
          </div>
-      );
-   }
+      </div>
+   );
 }
 
 export default SingleProductPage;

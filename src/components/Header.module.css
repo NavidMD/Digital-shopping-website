@@ -9,7 +9,7 @@
 }
 .nav{
    background-color: rgb(15, 30, 49);
-   box-shadow: 0px 4px 13px -5px black;   
+   box-shadow: 0px 4px 10px -6px black;   
    margin: 1em 0;
    padding: .5em 2em;
    display: flex;
@@ -53,7 +53,7 @@
    display: flex;
    justify-content: center; align-items: center;
    background-color: rgb(15, 30, 49);
-   box-shadow: 0px 4px 13px -5px black;
+   box-shadow: 0px 4px 10px -6px black;
    border-radius: 50%;
    position: absolute;
    left: 175px; top: 21px;
@@ -90,8 +90,6 @@
    animation: cartAnimation 1.2s infinite ease-in-out;
 }
 
-
-
 @keyframes cartAnimation {
    0%{
       transform: rotate(0);
@@ -104,5 +102,22 @@
    }
    100%{
       transform: rotate(0);
+   }
+}
+
+
+@media (max-width: 1200px)  {
+   .nav {
+      display: none;
+   }
+}
+@media (max-width:525px) {
+   .cartIconContainer {
+      left: 75px;
+   }
+}
+@media (max-width: 415px) {
+   .cartIconContainer {
+      left: 65px;
    }
 }

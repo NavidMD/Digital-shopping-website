@@ -43,7 +43,7 @@ const Footer = () => {
                </div>
             </div>
             <div className={styles.logoPart}>
-               <h2> پرداخت امن زرین پال و نماد اعتماد الکترونیکی </h2>
+               <h2> پرداخت امن زرین پال    </h2>
                <div>
                   <img src={ZarinpalLogo}/>
                </div>

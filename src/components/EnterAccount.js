@@ -12,7 +12,7 @@ const MainDiv = styled.div`
    left: 25px;
    top: 21px;
    background-color: rgb(15, 30, 49);
-   box-shadow: 0px 4px 13px -5px black;
+   box-shadow: 0px 4px 10px -6px black;
    border-radius: 1.5em;
    display: flex;
    justify-content: center;
@@ -35,7 +35,18 @@ const MainDiv = styled.div`
       font-family: 'KoohNoor';
       font-size: .9rem;
    }
-   
+   @media (max-width: 525px) {
+      width: 40px;
+      h3 {
+         display: none;
+      }
+      img {
+         left: auto;
+      }
+   }
+   @media (max-width:415px) {
+      left: 18px;
+   }
 `
 
 const EnterAccount = () => {
